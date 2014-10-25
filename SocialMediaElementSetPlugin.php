@@ -13,13 +13,13 @@ class SocialMediaElementSetPlugin extends Omeka_Plugin_AbstractPlugin
             'filterTwitter'   => array('Display', 'Item', 'Social Media Elements', 'Twitter'),
             'filterTumblr'    => array('Display', 'Item', 'Social Media Elements', 'Tumblr'),
             'filterFlickr'    => array('Display', 'Item', 'Social Media Elements', 'Flickr'),
-            //'filterFacebook'  => array('Display', 'Item', 'Social Media Elements', 'Facebook'),
+            'filterFacebook'  => array('Display', 'Item', 'Social Media Elements', 'Facebook'),
             'filterGitHub'    => array('Display', 'Item', 'Social Media Elements', 'GitHub'),
-            //'filterInstagram' => array('Display', 'Item', 'Social Media Elements', 'Instagram'),
+            'filterInstagram' => array('Display', 'Item', 'Social Media Elements', 'Instagram'),
             'filterVimeo'     => array('Display', 'Item', 'Social Media Elements', 'Vimeo'),
-            'filterYoutube'   => array('Display', 'Item', 'Social Media Elements', 'Youtube'),
-            'filterLinkedin'   => array('Display', 'Item', 'Social Media Elements', 'Linked In'),
-            //'filterUntappd'   => array('Display', 'Item', 'Social Media Elements', 'Untappd'),
+            'filterYoutube'   => array('Display', 'Item', 'Social Media Elements', 'YouTube'),
+            'filterLinkedin'  => array('Display', 'Item', 'Social Media Elements', 'Linked In'),
+            'filterUntappd'   => array('Display', 'Item', 'Social Media Elements', 'Untappd'),
             );
 
     protected $_elements = array(
@@ -68,7 +68,7 @@ class SocialMediaElementSetPlugin extends Omeka_Plugin_AbstractPlugin
     public function filterFacebook($value, $args)
     {
         $imgUrl = img('facebook.png');
-        $link = "<a href='http://twitter.com/$value'  class='social-media-element'  style='background-image: url($imgUrl)' >$value</a>";
+        $link = "<a href='http://facebook.com/$value'  class='social-media-element'  style='background-image: url($imgUrl)' >$value</a>";
         return $link; 
     }
 
@@ -82,7 +82,7 @@ class SocialMediaElementSetPlugin extends Omeka_Plugin_AbstractPlugin
     public function filterVimeo($value, $args)
     {
         $imgUrl = img('vimeo.png');
-        $link = "<a href='http://twitter.com/$value'  class='social-media-element'  style='background-image: url($imgUrl)'  >$value</a>";
+        $link = "<a href='http://vimeo.com/$value'  class='social-media-element'  style='background-image: url($imgUrl)'  >$value</a>";
         return $link; 
     }
     
@@ -102,11 +102,17 @@ class SocialMediaElementSetPlugin extends Omeka_Plugin_AbstractPlugin
 
     public function filterInstagram($value, $args)
     {
-        $imgUrl = img('instagram.png');
-        $link = "<a href='http://twitter.com/$value'  class='social-media-element'  style='background-image: url($imgUrl)' >$value</a>";
+        $imgUrl = img('Instagram.png');
+        $link = "<a href='http://instagram.com/$value'  class='social-media-element'  style='background-image: url($imgUrl)' >$value</a>";
         return $link; 
     }
-    
+
+    public function filterUntappd($value, $args)
+    {
+        $imgUrl = img('untappd.png');
+        $link = "<a href='http://untappd.com/$value'  class='social-media-element'  style='background-image: url($imgUrl)' >$value</a>";
+        return $link; 
+    }
     
     public function hookInstall()
     {
@@ -139,20 +145,18 @@ class SocialMediaElementSetPlugin extends Omeka_Plugin_AbstractPlugin
     protected function installElements()
     {
         $elementSetMetadata = array('name' => 'Social Media Elements', 'description' => 'Social Media IDs');
-        
         $elements = array();
-        $elements[] = array('name' => 'Twitter');
-        $elements[] = array('name' => 'Facebook');
-        $elements[] = array('name' => 'Instagram');
-        $elements[] = array('name' => 'Tumblr');
-        $elements[] = array('name' => 'Flickr');
-        $elements[] = array('name' => 'Linked In');
-        $elements[] = array('name' => 'GitHub');
-        $elements[] = array('name' => 'YouTube');
-        $elements[] = array('name' => 'Vimeo');
-        $elements[] = array('name' => 'Untappd');
+        $elements[] = array('name' => 'Twitter', 'description' => __('Username, e.g. patrick_mj'));
+        $elements[] = array('name' => 'Facebook', 'description' => __('Username, e.g. HagleyMuseumandLibrary'));
+        $elements[] = array('name' => 'Instagram', 'description' => __('Username'));
+        $elements[] = array('name' => 'Tumblr', 'description' => __('Username'));
+        $elements[] = array('name' => 'Flickr', 'description' => __('Username'));
+        $elements[] = array('name' => 'Linked In', 'description' => __('Id, e.g. 1234567'));
+        $elements[] = array('name' => 'GitHub', 'description' => __('Username'));
+        $elements[] = array('name' => 'YouTube', 'description' => __('Username'));
+        $elements[] = array('name' => 'Vimeo', 'description' => __('Username'));
+        $elements[] = array('name' => 'Untappd', 'description' => __('Username'));
         insert_element_set($elementSetMetadata, $elements);
     }
-
 }
 
