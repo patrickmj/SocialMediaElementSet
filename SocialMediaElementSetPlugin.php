@@ -20,6 +20,8 @@ class SocialMediaElementSetPlugin extends Omeka_Plugin_AbstractPlugin
             'filterYoutube'   => array('Display', 'Item', 'Social Media Elements', 'YouTube'),
             'filterLinkedin'  => array('Display', 'Item', 'Social Media Elements', 'Linked In'),
             'filterUntappd'   => array('Display', 'Item', 'Social Media Elements', 'Untappd'),
+            
+            'filterSocialMediaInput' => array('ElementInput', 'Item', 'Social Media Elements', 'Facebook') 
             );
 
     protected $_elements = array(
@@ -140,6 +142,12 @@ class SocialMediaElementSetPlugin extends Omeka_Plugin_AbstractPlugin
         }
         $list .= "</ul>";
         return $list;
+    }
+    
+    public function filterSocialMediaInput($components, $args)
+    {
+        $components['input'] = get_view()->formText($args['input_name_stem'], $args['value']);
+        return $components;
     }
     
     protected function installElements()
