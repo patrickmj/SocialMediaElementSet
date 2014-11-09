@@ -33,7 +33,7 @@ class SocialMediaElementSetPlugin extends Omeka_Plugin_AbstractPlugin
             'Vimeo',
             'YouTube',
             'Linked In',
-            //'Untappd'
+            'Untappd'
             );
     public function hookAfterSaveItem($args)
     {
