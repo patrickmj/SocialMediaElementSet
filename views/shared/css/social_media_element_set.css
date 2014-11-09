@@ -5,3 +5,8 @@
     background-size: 1.3em auto;
     padding-left: 20px;
 }
+
+.social-media-list {
+	list-style-type: none;
+	margin-left: 0;
+}

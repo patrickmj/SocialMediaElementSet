@@ -20,15 +20,14 @@ class SocialMediaElementSetPlugin extends Omeka_Plugin_AbstractPlugin
             'filterYoutube'   => array('Display', 'Item', 'Social Media Elements', 'YouTube'),
             'filterLinkedin'  => array('Display', 'Item', 'Social Media Elements', 'Linked In'),
             'filterUntappd'   => array('Display', 'Item', 'Social Media Elements', 'Untappd'),
-            
-            'filterSocialMediaInput' => array('ElementInput', 'Item', 'Social Media Elements', 'Facebook') 
+            'filterLinkedin'   => array('Display', 'Item', 'Social Media Elements', 'Linked In'),
             );
 
     protected $_elements = array(
             'Twitter',
             'Tumblr',
-            //'Flickr',
-            //'Facebook',
+            'Flickr',
+            'Facebook',
             'GitHub',
             'Instagram',
             'Vimeo',
@@ -127,13 +126,15 @@ class SocialMediaElementSetPlugin extends Omeka_Plugin_AbstractPlugin
         
     }
     
-    public function socialMediaLinksList($item)
+    public function socialMediaLinksList($item, $showEmpty = false)
     {
         $list = "<ul class='social-media-list'>";
-        foreach ($this->_elements as $element)
-        {
+        
+        foreach ($this->_elements as $element) {
+            //check without filters so I can see if it is empty
             $el = metadata($item, array('Social Media Elements', $element), array('no_filter' => true));
-            if (!empty($el)) {
+            if ($showEmpty || !empty($el)) {
+                //reget the data with the filtered content
                 $el = metadata($item, array('Social Media Elements', $element));
                 $list .= "<li>";
                 $list .= $el;
